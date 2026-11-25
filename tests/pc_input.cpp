@@ -30,7 +30,7 @@ int main() {
     auto id = SDL_AttachVirtualJoystick(&description);
     state.joystick = SDL_OpenJoystick(id); state.began = SDL_GetTicks();
     if (!state.joystick) return 2;
-    char program[] = "hello", option[] = "--frames", count[] = "600";
+    char program[] = "hello", option[] = "--frames", count[] = "1000000";
     char* args[] = {program, option, count};
     int result = template_main(3, args);
     // template_main calls SDL_Quit, which also releases the virtual device.

@@ -29,6 +29,8 @@ O build Xbox usa as revisões fixadas sem patches privados de Tube360, recompila
 
 O empacotador recusa árvore suja, build de outro commit e alteração do binário/lock posterior à prova. O pacote leva inventário com SHA-256 e avisos de runtime. A inspeção de entrega também verifica o inventário ZIP, a equivalência do `source.tar` com o commit e a ausência de `net_log.txt` ou diretórios de build/dependências no fonte. Não há execução de console automatizada no bootstrap/build/package.
 
+Os registros JSON não incluem caminhos privados de host. O XEX ainda pode conter strings de caminhos de fonte da instalação GCC/newlib reutilizada (asserts internos); isso foi observado na inspeção binária. Não são arquivos de configuração ou credenciais. Uma distribuição que exija remover esses caminhos precisa reconstruir os runtimes com prefix mapping, e revalidar o binário resultante.
+
 ## O que ainda falta
 
 - Imagem e legibilidade no Xenos real, A/B em controle físico e retorno ao dashboard mantendo XBDM.

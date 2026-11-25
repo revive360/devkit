@@ -27,6 +27,9 @@ def main():
             'SDL-xenon': 'SDL-xenon/build-xsdk/libSDL3.a',
         }.items()
     }
+    for name in ('libgcc.a', 'libstdc++.a', 'libc.a', 'libm.a'):
+        runtime = subprocess.check_output([str(compiler), '-print-file-name=' + name], text=True).strip()
+        libraries[name] = sha(runtime)
     record = {
         'source_commit': git('rev-parse', 'HEAD'),
         'source_dirty': bool(git('status', '--porcelain', '--untracked-files=all')),

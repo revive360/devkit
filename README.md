@@ -6,6 +6,8 @@ Built on [xsdk](https://github.com/xenosworks/xsdk), [vulkan4xenon](https://gith
 
 **Development state:** PC and Xbox builds have been produced. Real-console acceptance of this template is pending. No binary release is claimed. The example title ID is `0x52563330`; choose another for your app.
 
+Owner and initial maintainer: [Pedro](https://github.com/PedroHenrique0713).
+
 ## Ten-minute loop, after prerequisites
 
 The first toolchain build and preparing a console do not fit into an honest ten-minute promise. Start with [homebrew in 2026](docs/homebrew-2026.md). On Linux, install CMake 3.25+, Make, Python 3.12+, a C/C++ compiler, SDL3 3.2+ development files, Vulkan headers/loader/driver and `glslangValidator`. The cross compiler also needs the build dependencies listed by xsdk. Windows users can use Linux in WSL for building; this workflow has not been verified on macOS.

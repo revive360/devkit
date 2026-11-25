@@ -1,0 +1,32 @@
+{
+  "console_validation": "accepted",
+  "accepted_on": "2026-11-25",
+  "source_commit": "a7696125028f72cf9325c56d89cb05d754b01dc0",
+  "xex_sha256": "d1071574280ef64b5c3b90f59932666c3614913478754294a0bc13a991598ca5",
+  "evidence_kind": "owner-and-coordinator-report",
+  "evidence_reference": "R2-adendo-selos.md, section 4, supplied by the owner/coordinator",
+  "accepted_by": ["Coordinator", "PedroHenrique0713"],
+  "console_count": 1,
+  "console_model": "Xbox 360 E (Corona)",
+  "environment": ["BadUpdate", "Aurora"],
+  "cli_checks": ["discover", "mkdir", "put", "get with matching SHA-256", "run with working directory"],
+  "udp_observations": [
+    "startup",
+    "first frame submitted",
+    "gamepad: connected",
+    "heartbeat frames=302",
+    "A down/up",
+    "B exit",
+    "normal exit; frames=565"
+  ],
+  "exit_status": 0,
+  "owner_tv_check": "Text legible, no stray triangles",
+  "xbdm_available_after_exit": true,
+  "temporary_folder_removed_by_coordinator": true,
+  "limits": [
+    "One physical console and one model only",
+    "Acceptance applies only to the source commit and XEX hash recorded above",
+    "No cold toolchain installation, other console model, screenshot correctness or controller reconnection claim",
+    "This report does not create organization CI provenance, a signed release or a live catalog certification"
+  ]
+}

@@ -23,7 +23,9 @@ def fetch():
             temporary = archive.with_suffix('.part')
             urllib.request.urlretrieve(pin['archive'], temporary)
             temporary.replace(archive)
-        if hashlib.file_digest(archive.open('rb'), 'sha256').hexdigest() != pin['sha256']:
+        with archive.open('rb') as stream:
+            digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+        if digest != pin['sha256']:
             raise SystemExit(f'Archive checksum mismatch: {archive}; refusing extraction')
         target = dependencies / name
         if target.exists():

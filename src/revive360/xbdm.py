@@ -27,7 +27,9 @@ def remote_path(value):
         raise ValueError('Use an absolute console path, e.g. HDD:\\Apps\\Hello\\default.xex')
     drive, path = value.split(':', 1)
     drive = 'HDD' if drive.upper() in ('HDD', 'HDD1') else drive.upper()
-    return ntpath.normpath(drive + ':' + path)
+    # ntpath only recognizes single-letter DOS drives. Normalize the path part
+    # separately, otherwise it drops the root slash from multi-letter HDD:\.
+    return drive + ':' + ntpath.normpath('\\' + path.lstrip('\\'))
 
 
 class Xbdm:

@@ -20,7 +20,8 @@ def decode(raw, info, width=None, height=None):
     from PIL import Image
     if (info.get('format', 0) & ~0x100) != 0x18280086:
         raise ValueError('Unsupported capture format; raw and JSON have been preserved')
-    width, height = width or info['width'], height or info['height']
+    width = info['width'] if width is None else width
+    height = info['height'] if height is None else height
     if width <= 0 or height <= 0 or width * height > 4096 * 4096:
         raise ValueError('Invalid capture dimensions')
     tiled = bool(info.get('format', 0) & 0x100)

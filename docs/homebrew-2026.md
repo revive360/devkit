@@ -36,7 +36,7 @@ Se o app cair antes do primeiro quadro, separe: inicialização SDL, criação d
 
 `scripts/package.py` exige uma árvore limpa e um build associado ao mesmo commit. Inclui XEX, MIT, avisos xsdk/libxenon/Xenia, vulkan4xenon/Khronos, SDL, newlib e GCC Runtime Exception, lock de fontes e fonte do devkit. Não inclui IP, `net_log.txt`, arquivos de conta, ferramentas de destrava ou compilador. Revise o inventário antes de distribuir.
 
-Cada projeto decide sua licença, preservando a compatibilidade das dependências. O uso de IA é permitido, mas a pessoa responde pelo código. Registre o hash do pacote, commit e resultado **em console real** antes de chamá-lo de lançamento. O [roteiro físico](console-test.md) ainda está pendente para este template.
+Cada projeto decide sua licença, preservando a compatibilidade das dependências. O uso de IA é permitido, mas a pessoa responde pelo código. Registre o hash do pacote, commit e resultado **em console real** antes de chamá-lo de lançamento. O binário exato da R1 recebeu [aceite físico em 2026-11-25](console-test.md), em um Xbox 360 E (Corona). Apps derivados, outros modelos e builds futuros continuam exigindo seu próprio teste.
 
 ## Leituras upstream
 

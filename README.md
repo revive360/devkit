@@ -4,7 +4,7 @@ The shared starting point for a new open app on Xbox 360: a small SDL3 + Vulkan 
 
 Built on [xsdk](https://github.com/xenosworks/xsdk), [vulkan4xenon](https://github.com/xenosworks/vulkan4xenon), [SDL-xenon](https://github.com/xenosworks/SDL-xenon) and the work of [Free60/libxenon](https://github.com/Free60Project/libxenon). We reference and build those projects rather than replace them. Read the [provenance audit](docs/provenance.md) before changing dependencies.
 
-**Development state:** PC and Xbox builds have been produced. Real-console acceptance of this template is pending. No binary release is claimed. The example title ID is `0x52563330`; choose another for your app.
+**Development state:** PC and Xbox builds have been produced. The exact R1 XEX was accepted on **2026-11-25** by the coordinator and owner on **one Xbox 360 E (Corona), BadUpdate + Aurora**. See the [acceptance record and limits](docs/console-test.md). Future binaries need their own acceptance. No binary release is claimed. The example title ID is `0x52563330`; choose another for your app.
 
 Owner and initial maintainer: [Pedro](https://github.com/PedroHenrique0713).
 
@@ -12,7 +12,7 @@ Owner and initial maintainer: [Pedro](https://github.com/PedroHenrique0713).
 
 **Privacy:** No telemetry or hidden collection. Login credentials/tokens must stay on the console and out of issues/logs; any future collection requires explicit opt-in. `net_log.txt` enables developer-selected UDP diagnostics; keep it private, use trusted networks and never log credentials.
 
-Organization: [`revive360`](https://github.com/revive360). Follow its [review levels/checklist](https://github.com/revive360/.github/blob/main/REVIEW.md), [required README notices](https://github.com/revive360/.github/blob/main/APP_README_TEMPLATE.md) and [CI capacity plan](docs/ci.md). Contribution commits require DCO (`git commit -s`). No self-review except founder Pedro, with the exception recorded. Security: private vulnerability reporting (48-hour initial response); public support: issues/Discussions. `CONTACT_DECEMBER_2026_TODO`: confirmed email/domain will replace temporary GitHub routes in December. No donations are received/split by the org.
+Organization: [`revive360`](https://github.com/revive360). Follow its [review levels/checklist](https://github.com/revive360/.github/blob/main/REVIEW.md), [required README notices](https://github.com/revive360/.github/blob/main/APP_README_TEMPLATE.md) and [CI capacity plan](docs/ci.md). Contribution commits require DCO (`git commit -s`). No self-review except founder Pedro, with the exception recorded. Security: private vulnerability reporting (48-hour initial response); public support: [official Discussions](https://github.com/orgs/revive360/discussions). `CONTACT_DECEMBER_2026_TODO`: confirmed email/domain will replace temporary GitHub routes in December. No donations are received/split by the org.
 
 ## Ten-minute loop, after prerequisites
 

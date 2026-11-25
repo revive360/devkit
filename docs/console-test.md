@@ -1,10 +1,27 @@
-# Roteiro para o coordenador — pendente
+# Roteiro e aceite físico — aceito em 2026-11-25
 
-**Nenhum acesso ao console foi realizado na preparação do devkit.** O XEX/ZIP é de desenvolvimento. Só marque aceite depois das verificações abaixo num console real. Não precisa mexer na instalação do Tube360.
+**Aceite registrado a partir do relato do coordenador e do dono fornecido no adendo R2.** Este registro não é uma nova execução de console por este agente. O pacote continua de desenvolvimento; aceite físico não cria uma release assinada pelo CI.
+
+## Registro aceito — um console, um modelo
+
+- Data: **2026-11-25**. Responsáveis: coordenador e dono Pedro (`PedroHenrique0713`).
+- Console: **Xbox 360 E (Corona)**; ambiente **BadUpdate + Aurora**.
+- Fonte do binário: commit `a7696125028f72cf9325c56d89cb05d754b01dc0` (R1).
+- XEX SHA-256: `d1071574280ef64b5c3b90f59932666c3614913478754294a0bc13a991598ca5`.
+- CLI do devkit: discover, mkdir, put e get; hash de retorno idêntico. Run enviado com o diretório de trabalho.
+- UDP observado, conforme relato recebido: `startup`, `first frame submitted`, `gamepad: connected`, heartbeat `frames=302`, A down/up, `B exit`, `normal exit; frames=565`; **exit status 0**.
+- O dono confirmou na TV texto legível, sem triângulos. XBDM continuou disponível após sair. Pasta temporária removida pelo coordenador.
+- Estado: **`console_validation: accepted`**; registro estruturado em [console-acceptance-2026-11-25.json](console-acceptance-2026-11-25.json).
+
+**Limites:** um console físico e um modelo, no ambiente e hash acima. Não se estende a outros modelos, builds futuros, instalação fria da toolchain, fidelidade de screenshots ou reconexão do controle. Não afirma atestação de CI, publicação ou certificação de catálogo.
+
+`dist/hello/manifest.json`, o manifest dentro de `dist/hello-development.zip` e `build/xbox/build.json` registram o aceite e a data. A atualização é somente de metadados/avisos: XEX, ELF e `source.tar` original permanecem idênticos. O ZIP tem novo hash por incluir o aceite; `dist/SHA256SUMS` foi atualizado. O arquivo fonte da R1 conserva sua documentação histórica. O ZIP anterior está preservado em `.work/evidence/`.
+
+Para reaplicar o relato ao pacote existente, com fonte e hash idênticos, use `python3 scripts/accept_console.py`. A ferramenta não fala com o console, não compila e recusa fonte/hash diferentes; um build novo começa pendente. O roteiro abaixo continua válido para novos testes.
 
 ## Preparação e envio
 
-Na raiz do devkit, confira `dist/SHA256SUMS` e `dist/hello/manifest.json`. Confirme o commit de fonte, hash do XEX e `console_validation: pending`. O console deve estar preparado pelo usuário e com XBDM disponível. Não distribua essa preparação, payloads ou chaves.
+Na raiz do devkit, confira `dist/SHA256SUMS` e `dist/hello/manifest.json`. Confirme commit e hash do XEX. O binário aceito acima tem `console_validation: accepted`; um binário novo deve começar `pending` e obter seu próprio registro. O console deve estar preparado pelo usuário e com XBDM disponível. Não distribua essa preparação, payloads ou chaves.
 
 Instale a CLI e use-a explicitamente. Os endereços abaixo são exemplos; substitua pelos da sua rede:
 

@@ -1,0 +1,13 @@
+# Do zero ao primeiro app
+
+O caminho de dez minutos começa **depois** dos pré-requisitos: PC Linux com ferramentas instaladas, toolchain xsdk pronta, bibliotecas compiladas por `scripts/bootstrap.sh` e console preparado pelo usuário, fora da Revive360. A montagem inicial da toolchain pode demorar bem mais; veja [o guia](../docs/homebrew-2026.md). O template ainda aguarda aceite físico; não é um lançamento validado.
+
+1. Na raiz do devkit, rode `scripts/build.sh pc` e `./build/pc/hello`. Deve aparecer REVIVE360, SDL3 AND VULKAN e uma instrução para conectar o controle. A acende A PRESSED; B ou Escape sai. O log também aparece no terminal. A janela é fixa em 1280×720; se a superfície mudar, o exemplo pede reinício em vez de implementar redimensionamento.
+2. Exporte `XSDK_TOOLCHAIN=/caminho/absoluto/xsdk-gcc` se a toolchain não estiver em `.deps/toolchain`. Rode `scripts/build.sh xbox`. O mesmo código vira `build/xbox/hello.xex`, ELF PowerPC ligado a SDL-xenon/vulkan4xenon e empacotado pelo xsdk. Não precisa de arquivos de SDK da Microsoft.
+3. Com o código commitado e o último build feito nesse commit, rode `python3 scripts/package.py`. O diretório `dist/hello/` leva `default.xex`, licenças, fontes e manifest; o ZIP é um artefato de desenvolvimento.
+4. Instale a CLI como descrito no [README](../README.md). Siga [o roteiro do coordenador](../docs/console-test.md) para envio e execução. Todos os caminhos XBDM usam `HDD:` e o comando de execução informa o diretório do app.
+5. Confira a imagem na TV, A, B e o UDP. Só depois registre o teste físico e prepare um lançamento. PC/emulador não substitui essa etapa.
+
+Para fazer seu app, copie `template/`, ajuste a pasta fonte no script de build, nome do alvo, textos, `REVIVE360_TITLE_ID`, licença e identificação. `CMakeLists.txt` funciona tanto nativo como com `cmake/xsdk.cmake`; `scripts/build.sh` reúne as opções. Não deixe diferentes apps com o ID de exemplo. `text.hpp` contém glifos próprios de 5×7 convertidos em triângulos; shaders sólidos evitam depender de atlas/fontes no primeiro passo. `Graphics` demonstra a superfície de display no 360 e janela SDL no PC, um quadro em voo, apresentação FIFO e memória coerente.
+
+`net_log.txt` é opcional: uma linha `<IP-DO-PC> <porta-UDP>`. No console, fica ao lado de `default.xex`; no PC, no diretório de trabalho. O xsdk faz o envio no console; `log.hpp` usa o mesmo enquadramento no PC. Não commite a configuração nem a acrescente ao pacote público. `hello --frames 10` é uma execução curta útil no PC; a execução normal espera B/Escape. O main retorna normalmente, sem reiniciar o console.

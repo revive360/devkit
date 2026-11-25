@@ -1,4 +1,6 @@
-# Desempenho no Xenos
+# Xenos: mede antes de mexer
+
+Traz os números do 360. Dá pra gastar uma tarde no lugar errado sem medir; começa pelo passe que pesa.
 
 As medidas abaixo vêm do FORCE PUSH, no console de Pedro com BadUpdate em 2026-11-02, usando timestamps Vulkan entre passes (período observado 2 ns). São observações daquela cena, não metas garantidas nem benchmarks deste template. Base: memória de desenvolvimento `reference-xbox360-xenos-desempenho-vulkan4xenon.md`, revisada em 2026-11-04.
 

@@ -1,4 +1,6 @@
-# Shared toolchain CI design
+# Build the toolchain once. Share the work.
+
+Give the apps a toolchain they can reuse. Keep the heavy build in one place and bring the evidence with it.
 
 The authoritative [Free-plan capacity research and release architecture](https://github.com/revive360/.github/blob/main/CI.md) and [owner setup checklist](https://github.com/revive360/.github/blob/main/SETUP.md) live in the policy repository. This is a design, not a published toolchain image or tested release workflow.
 

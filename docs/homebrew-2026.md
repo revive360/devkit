@@ -1,4 +1,6 @@
-# Como fazer um app homebrew de 360 em 2026
+# Bora fazer um app de 360 em 2026
+
+Cola com o fonte e monta a base. O caminho é PC pronto, app rodando e registro no 360 real.
 
 Este é o caminho usado aqui, não uma lista de todos os SDKs existentes. Desenvolvemos apps novos e abertos sobre o ecossistema existente. Não há dependência do SDK da Microsoft e não são distribuídos jogos, chaves nem exploits. BadUpdate/RGH e a configuração do monitor XBDM ficam inteiramente com o usuário, fora da org.
 

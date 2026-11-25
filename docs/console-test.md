@@ -1,4 +1,6 @@
-# Roteiro e aceite físico — aceito em 2026-11-25
+# Console de verdade, registro na mão
+
+Fecha o ciclo com o binário certo e guarda a prova. Quem tá na frente da TV confere a imagem; o log conta o resto.
 
 **Aceite registrado a partir do relato do coordenador e do dono fornecido no adendo R2.** Este registro não é uma nova execução de console por este agente. O pacote continua de desenvolvimento; aceite físico não cria uma release assinada pelo CI.
 

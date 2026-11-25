@@ -1,4 +1,6 @@
-# Validação e limites
+# Validação: traz a prova
+
+Aqui tu confere o que foi testado, repete as verificações e vê onde a evidência termina. Leva esse registro junto do PR.
 
 Preparação inicial em 2026-11-25. O relatório de entrega local contém commits, hashes e caminhos dos logs completos. Os testes automatizados locais abaixo não falam com console real, criam org, fazem push ou acessam VPS. O aceite físico posterior, relatado pelo coordenador e pelo dono, está registrado separadamente.
 

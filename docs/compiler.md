@@ -1,4 +1,6 @@
-# GCC xsdk: comparação de int64 entre 2 e 4 GiB
+# GCC xsdk: int64 de 2 a 4 GiB, bug de verdade
+
+Esse bug pegou o Tube360 no console. Guarda o caso e confere o assembly quando tamanho de arquivo grande sair torto.
 
 O Tube360 encontrou uma falha concreta no GCC xsdk usado localmente, GCC 15.3.0 com os patches de milestone 52. Não é um problema do servidor HTTP nem de um `int` pequeno no parser. O Xenon usa registradores de 64 bits com endereços/execução em modo de 32 bits (`MSR.SF=0`). A otimização **RTL combine** pode emitir `mr.` para testar o sinal de um `int64_t`; nesse modo, CR0 reflete os 32 bits baixos em vez do valor de 64 bits esperado.
 

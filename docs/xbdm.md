@@ -1,4 +1,6 @@
-# Canal de desenvolvimento: XBDM e UDP
+# XBDM e UDP: manda o arquivo, pega o log
+
+Pra fechar o ciclo, sobe o app, lê o log e confere o que aconteceu. Os comandos estão aqui; usa o diretório certo.
 
 O devkit fornece **um cliente**, não o monitor do console. A preparação do console é externa à organização. XBDM não tem autenticação: use rede local confiável, sem exposição à internet. Esta tarefa de preparação não acessou console algum.
 

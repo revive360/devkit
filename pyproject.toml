@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "revive360-devkit"
+version = "0.1.0.dev0"
+description = "Open homebrew development helpers for Revive360"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = []
+
+[project.optional-dependencies]
+screenshot = ["Pillow>=10"]
+
+[project.scripts]
+xbdm = "revive360.xbdm:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

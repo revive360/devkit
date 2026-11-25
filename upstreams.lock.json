@@ -1,0 +1,20 @@
+{
+  "xsdk": {
+    "repository": "https://github.com/xenosworks/xsdk",
+    "commit": "8c58c7a3fb37bb261c5a11a8a1f4fa8a8bfd0d28",
+    "archive": "https://codeload.github.com/xenosworks/xsdk/tar.gz/8c58c7a3fb37bb261c5a11a8a1f4fa8a8bfd0d28",
+    "sha256": "9b097345d2cdc707fc5fc8f44b78f0fa9c2dad63f0fdeaee5528a9ef91da5f95"
+  },
+  "vulkan4xenon": {
+    "repository": "https://github.com/xenosworks/vulkan4xenon",
+    "commit": "df25dc50e6296d89822626b433f4080db05bccc8",
+    "archive": "https://codeload.github.com/xenosworks/vulkan4xenon/tar.gz/df25dc50e6296d89822626b433f4080db05bccc8",
+    "sha256": "02f4acdec4c52f21e176c01339539c174e3e3f6fbc9dc3e8349a40d1a6cba17a"
+  },
+  "SDL-xenon": {
+    "repository": "https://github.com/xenosworks/SDL-xenon",
+    "commit": "adb87a744ae056f1849718770cf198fa6c4899f9",
+    "archive": "https://codeload.github.com/xenosworks/SDL-xenon/tar.gz/adb87a744ae056f1849718770cf198fa6c4899f9",
+    "sha256": "8460dbab41a87e3a375e8b5f1ce9470263f6db64cc99a276f91216508c2e53d8"
+  }
+}

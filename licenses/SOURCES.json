@@ -1,0 +1,18 @@
+{
+  "COPYING3": {
+    "source": "https://raw.githubusercontent.com/gcc-mirror/gcc/releases/gcc-15.3.0/COPYING3",
+    "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+  },
+  "COPYING.RUNTIME": {
+    "source": "https://raw.githubusercontent.com/gcc-mirror/gcc/releases/gcc-15.3.0/COPYING.RUNTIME",
+    "sha256": "9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74"
+  },
+  "COPYING.NEWLIB": {
+    "source": "https://sourceware.org/pub/newlib/newlib-4.6.0.20260123.tar.gz#COPYING.NEWLIB",
+    "sha256": "f3afe48e4bc6ed8466a42e9dacb6be1d8f9cbf5aac15cb8e474a5ccde8b40ef6"
+  },
+  "Xenia-BSD-3-Clause.txt": {
+    "source": "https://github.com/xenosworks/xsdk/blob/8c58c7a3fb37bb261c5a11a8a1f4fa8a8bfd0d28/THIRD_PARTY_NOTICES.md",
+    "sha256": "369ea6b0f7ba57544067e9d470ca82a927da787fb0a749b11cb55f1fd0ba47ae"
+  }
+}

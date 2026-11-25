@@ -1,0 +1,9 @@
+.deps/
+.work/
+build/
+dist/
+*.egg-info/
+__pycache__/
+.venv/
+net_log.txt
+*.raw

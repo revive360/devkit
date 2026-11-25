@@ -1,0 +1,30 @@
+# Auditoria de procedência e licenças
+
+Revisão de 2026-11-25, antes de integrar ou empacotar. Foram lidos os repositórios, fontes, receitas de build, licenças e avisos nas revisões abaixo. Os commits foram conferidos na API pública do GitHub e os arquivos baixados diretamente do upstream. `upstreams.lock.json` fixa commits e SHA-256 dos arquivos de fonte. Não usamos as cópias modificadas de exibição/vídeo do Tube360.
+
+| Peça | Repositório / revisão examinada | Licença | Conclusão e distribuição |
+| --- | --- | --- | --- |
+| xsdk, incluindo xost | [xenosworks/xsdk](https://github.com/xenosworks/xsdk/tree/8c58c7a3fb37bb261c5a11a8a1f4fa8a8bfd0d28), `8c58c7a3fb37bb261c5a11a8a1f4fa8a8bfd0d28` | MIT; trechos libxenon/Xenia BSD-3-Clause; fonte misc-fixed em domínio público | SDK homebrew independente. README declara desenvolvimento por engenharia reversa pública sem ferramentas Microsoft nem SDK vazado; fontes, imports por ordinal e empacotador ELF→XEX são consistentes com isso. Aceito com `LICENSE` e `THIRD_PARTY_NOTICES.md`. |
+| xsdk-gcc (nome do prefixo instalado, não outro repo) | [xsdk/tools/toolchain](https://github.com/xenosworks/xsdk/tree/8c58c7a3fb37bb261c5a11a8a1f4fa8a8bfd0d28/tools/toolchain) | GCC/binutils GPL-3.0-or-later; libgcc/libstdc++ com GCC Runtime Library Exception 3.1; newlib com licenças permissivas de `COPYING.NEWLIB` | Receita baixa GCC 15.3.0 e binutils 2.47 de ftp.gnu.org e newlib 4.6.0.20260123 de sourceware.org; verifica SHA-256 e aplica patches públicos. Não precisa de ferramentas Microsoft. Compilar código MIT com GCC não o torna GPL; preservar condições da exceção dos runtimes. Não redistribuímos o compilador. |
+| vulkan4xenon | [xenosworks/vulkan4xenon](https://github.com/xenosworks/vulkan4xenon/tree/df25dc50e6296d89822626b433f4080db05bccc8), `df25dc50e6296d89822626b433f4080db05bccc8` | MIT; Vulkan-Headers Apache-2.0 OU MIT | Camada Vulkan sobre xsdk, com comandos Xenos próprios. Sem dependência de SDK Microsoft nas fontes/receita examinadas. Preservar `LICENSE`, `THIRD_PARTY_NOTICES.md` e licença dos headers Khronos. |
+| SDL-xenon | [xenosworks/SDL-xenon](https://github.com/xenosworks/SDL-xenon/tree/adb87a744ae056f1849718770cf198fa6c4899f9), `adb87a744ae056f1849718770cf198fa6c4899f9` | zlib | Fork identificado de SDL 3.4.10. `docs/README-xsdk.md` descreve o backend xsdk para áudio/controle/threads; vídeo fica com vulkan4xenon. Não usa o SDK Microsoft no alvo xsdk. O repo contém backends de outras plataformas; eles não são compilados neste alvo. Manter `LICENSE.txt` e identificação do fork. |
+| Cliente XBDM | `forcepush-360/tools/xbdm.py`, commit local `230b14cb3b644868d001be08f44a3361d4effc26` | O projeto fonte não tem LICENSE; esta extração do código do próprio Pedro é licenciada MIT por solicitação expressa do titular no roteiro R1 | Histórico atribui o arquivo a PedroHenrique0713. Cliente Python de sockets/protocolo, sem SDK, chaves ou payload. A autorização vale para estes arquivos, não licencia todo o forcepush-360. Interface e validação foram adaptadas; reboot e debugger não foram trazidos. |
+| Conversão de captura | `forcepush-360/tools/xenos_untile.py`, mesmo commit; fórmulas de endereço de [Xenia](https://github.com/xenia-project/xenia/blob/master/src/xenia/gpu/texture_address.h) | Adaptação própria MIT; endereçamento derivado de Xenia BSD-3-Clause | Aviso Xenia preservado em `licenses/Xenia-BSD-3-Clause.txt`; a implementação elimina a dependência de NumPy. Pillow é opcional para PNG e não é distribuído no XEX. |
+
+## O que foi confirmado e o limite da conclusão
+
+As peças examinadas fornecem fontes abertas, licenças e uma cadeia de build que não requer o SDK da Microsoft. Não foi encontrado material de SDK vazado nessa cadeia. Os comentários do empacotador sobre formatos observados em títulos XDK descrevem interoperabilidade por engenharia reversa, não um download ou dependência do SDK. Não há redistribuição de binários, headers, bibliotecas, chaves ou assets da Microsoft pelo devkit.
+
+Isso documenta a inspeção das revisões fixadas, não uma certificação de todo o histórico upstream ou de qualquer arquivo que alguém venha a acrescentar. Se surgir evidência contraditória ou dúvida de licença, bloquear importação/empacotamento e relatar antes de continuar. Fixar uma revisão nova exige repetir a revisão dos diffs e avisos.
+
+## Licenças de runtime e ferramentas de host
+
+`licenses/COPYING3` e `COPYING.RUNTIME` vêm do [GCC 15.3.0](https://github.com/gcc-mirror/gcc/tree/releases/gcc-15.3.0). `COPYING.NEWLIB` foi extraído do [arquivo newlib fixado](https://sourceware.org/pub/newlib/newlib-4.6.0.20260123.tar.gz), cujo SHA-256 é verificado pela receita xsdk. Os hashes estão em `licenses/SOURCES.json`. A exceção exige compilação elegível; não introduza componentes proprietários no pipeline e suponha que ela os autoriza.
+
+`glslangValidator` é uma ferramenta aberta de host do [Khronos glslang](https://github.com/KhronosGroup/glslang), com licenças descritas pelo upstream; não é o compilador de shaders Microsoft. CMake, Make e Python são ferramentas de host e não são embutidas no app. O código do template é MIT e seus glifos são desenhos próprios, sem arquivo de fonte externo. As licenças não autorizam uso de marcas alheias como identidade do app.
+
+## Como as dependências ficam fora do Git
+
+`scripts/fetch.py` verifica o SHA-256 antes de extrair para `.deps/`, ignorado pelo Git. `scripts/bootstrap.sh` compila esses fontes com `-j2`. Só scripts, pins e avisos permitidos são versionados aqui; não há cópia dos SDKs no histórico do devkit. O pacote de desenvolvimento leva os avisos das bibliotecas ligadas, o lock e o fonte do devkit. Ele não contém o compilador, o monitor XBDM ou métodos de destrava.
+
+Na prova inicial foi reutilizado o compilador local `xsdk-gcc-52`, GCC 15.3.0, do Tube360, e reconstruídos xsdk, vulkan4xenon e SDL-xenon a partir dos arquivos fixados. A receita de construção do compilador foi auditada, mas não foi refeita essa instalação inteira. O manifest do pacote registra o hash do executável GCC usado; não afirma reprodutibilidade bit a bit de um compilador reconstruído.

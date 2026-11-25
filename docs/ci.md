@@ -1,0 +1,11 @@
+# Shared toolchain CI design
+
+The authoritative [Free-plan capacity research and release architecture](https://github.com/revive360/.github/blob/main/CI.md) and [owner setup checklist](https://github.com/revive360/.github/blob/main/SETUP.md) live in the policy repository. This is a design, not a published toolchain image or tested release workflow.
+
+Publish the approved compiler plus pinned xsdk/vulkan4xenon/SDL libraries once as `ghcr.io/revive360/devkit`, including lock manifest, source/patch availability, licenses and signed provenance. Rebuild only when image/toolchain inputs change. Apps consume an **immutable approved digest**, not `latest`, and do not rebuild GCC every run. App dependency/download/object caches are disposable and keyed by toolchain digest, lock and build flags; a cache miss must still produce the same verified build.
+
+Use disposable GitHub-hosted Linux runners, `-j2`, a minimal matrix and relevant PR/tag builds. Never attach self-hosted runners to public repositories or run fork code with secrets/write tokens. Cold GCC must fit the hosted 6-hour job limit or be split into verified image stages. Preserve the compiler components' GPL distribution obligations; the devkit's MIT license does not relicense GCC.
+
+Project releases must come from reviewed source built in CI: exact tested binary hash, real-console acceptance, checksums, source/licenses and signature/attestation. Build/draft generation is automatic; publish only after the exact CI artifact is tested on hardware. A local development package or emulator pass cannot replace that gate. The R1 template still has physical acceptance pending; R2 does not recompile, repackage or relabel it as released. Existing build/package evidence refers to the R1 commit and remains historical after these documentation commits.
+
+No GHCR image build, remote CI run or release was performed. The owner must implement and validate the image/release jobs separately before enabling this pipeline. Private Actions compute is currently a monetary allowance (US$12/month for Free orgs), not a guaranteed fixed minutes pool; read the dated official sources in the policy repo before rollout. Store public binary distributions as Releases assets and keep Actions artifacts short-lived.

@@ -1,5 +1,11 @@
 # Do zero ao primeiro app
 
+**Aviso de risco:** Homebrew pode causar banimento da conta/console no Xbox Live, perda de dados ou dano ao console. Use por sua conta e risco. Software **como está**, pela licença; nenhum selo ou revisão garante segurança ou compatibilidade.
+
+**Privacidade:** Sem telemetria ou coleta escondida. Login/tokens ficam no console, fora de issues/logs; coleta futura exige opt-in. O `net_log.txt` ativa log UDP escolhido pelo desenvolvedor: mantenha-o privado, em rede confiável e sem credenciais. Todo app derivado deve copiar os [avisos da org](https://github.com/revive360/.github/blob/main/APP_README_TEMPLATE.md) e declarar dono, licença, privacidade real e ficha válida. Ser membro não é selo. Proibido quebrar DRM/paywall; risco dos termos de terceiros é do autor.
+
+DCO obrigatório (`git commit -s`); ninguém revisa o próprio app exceto o fundador Pedro, inclusive no nível máximo, com a exceção registrada. Segurança: **Security and quality → Report a vulnerability**, resposta inicial em 48 h. Suporte: issues/Discussions. `CONTACT_DECEMBER_2026_TODO`: inserir só e-mail/domínio confirmados em dezembro.
+
 O caminho de dez minutos começa **depois** dos pré-requisitos: PC Linux com ferramentas instaladas, toolchain xsdk pronta, bibliotecas compiladas por `scripts/bootstrap.sh` e console preparado pelo usuário, fora da Revive360. A montagem inicial da toolchain pode demorar bem mais; veja [o guia](../docs/homebrew-2026.md). O template ainda aguarda aceite físico; não é um lançamento validado.
 
 1. Na raiz do devkit, rode `scripts/build.sh pc` e `./build/pc/hello`. Deve aparecer REVIVE360, SDL3 AND VULKAN e uma instrução para conectar o controle. A acende A PRESSED; B ou Escape sai. O log também aparece no terminal. A janela é fixa em 1280×720; se a superfície mudar, o exemplo pede reinício em vez de implementar redimensionamento.

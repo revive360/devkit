@@ -8,6 +8,12 @@ Built on [xsdk](https://github.com/xenosworks/xsdk), [vulkan4xenon](https://gith
 
 Owner and initial maintainer: [Pedro](https://github.com/PedroHenrique0713).
 
+**Risk notice:** Homebrew can lead to Xbox Live account/console bans, data loss or console damage. Use at your own risk. Software is **as is** under its license; neither review nor a badge guarantees safety or compatibility.
+
+**Privacy:** No telemetry or hidden collection. Login credentials/tokens must stay on the console and out of issues/logs; any future collection requires explicit opt-in. `net_log.txt` enables developer-selected UDP diagnostics; keep it private, use trusted networks and never log credentials.
+
+Organization: [`revive360`](https://github.com/revive360). Follow its [review levels/checklist](https://github.com/revive360/.github/blob/main/REVIEW.md), [required README notices](https://github.com/revive360/.github/blob/main/APP_README_TEMPLATE.md) and [CI capacity plan](docs/ci.md). Contribution commits require DCO (`git commit -s`). No self-review except founder Pedro, with the exception recorded. Security: private vulnerability reporting (48-hour initial response); public support: issues/Discussions. `CONTACT_DECEMBER_2026_TODO`: confirmed email/domain will replace temporary GitHub routes in December. No donations are received/split by the org.
+
 ## Ten-minute loop, after prerequisites
 
 The first toolchain build and preparing a console do not fit into an honest ten-minute promise. Start with [homebrew in 2026](docs/homebrew-2026.md). On Linux, install CMake 3.25+, Make, Python 3.12+, a C/C++ compiler, SDL3 3.2+ development files, Vulkan headers/loader/driver and `glslangValidator`. The cross compiler also needs the build dependencies listed by xsdk. Windows users can use Linux in WSL for building; this workflow has not been verified on macOS.

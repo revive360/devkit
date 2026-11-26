@@ -1,4 +1,4 @@
-# Revive360 devkit
+<p align="center"><img src="docs/img/header.svg" alt="Revive360 devkit: from an empty folder to a XEX running on a real 360" width="100%"></p>
 
 Grab the kit. Build something worth running on a 360. You get a small SDL3 + Vulkan app, pinned build scripts, an XBDM client and the lessons Tube360 made us learn. Read the code, make it yours and bring the console record when you submit app changes. MIT for our code; upstream libraries retain their own licenses.
 

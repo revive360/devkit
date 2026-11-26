@@ -1,0 +1,96 @@
+name: Toolchain image
+on:
+  push:
+    branches: [main, f55-ci]
+    paths: ['ci/**', 'upstreams.lock.json', 'scripts/bootstrap.sh', 'scripts/fetch.py', '.dockerignore', '.github/workflows/toolchain-image.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: toolchain-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  bootstrap:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    outputs:
+      recipe: ${{ steps.recipe.outputs.id }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Recipe and tests
+        id: recipe
+        run: |
+          python3 -m unittest discover -s tests -p test_ci.py -v
+          echo "id=$(python3 ci/recipe-id.py)" >> "$GITHUB_OUTPUT"
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+      - name: Binutils, stage-one GCC and newlib
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: ci/Dockerfile
+          target: bootstrap
+          cache-from: type=gha,scope=devkit-${{ steps.recipe.outputs.id }}
+          cache-to: type=gha,scope=devkit-${{ steps.recipe.outputs.id }},mode=max
+  compiler:
+    needs: bootstrap
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+      - name: Final C/C++ GCC and ABI checks
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: ci/Dockerfile
+          target: compiler
+          cache-from: type=gha,scope=devkit-${{ needs.bootstrap.outputs.recipe }}
+          cache-to: type=gha,scope=devkit-${{ needs.bootstrap.outputs.recipe }},mode=max
+  publish:
+    needs: [bootstrap, compiler]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Libraries and image publication
+        id: image
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: ci/Dockerfile
+          target: libraries
+          push: true
+          tags: ghcr.io/revive360/devkit:recipe-${{ needs.bootstrap.outputs.recipe }}
+          build-args: |
+            RECIPE_ID=${{ needs.bootstrap.outputs.recipe }}
+            SOURCE_REVISION=${{ github.sha }}
+          cache-from: type=gha,scope=devkit-${{ needs.bootstrap.outputs.recipe }}
+          cache-to: type=gha,scope=devkit-${{ needs.bootstrap.outputs.recipe }},mode=max
+      - uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a
+        with:
+          subject-name: ghcr.io/revive360/devkit
+          subject-digest: ${{ steps.image.outputs.digest }}
+          push-to-registry: true
+      - name: Record immutable image
+        env:
+          IMAGE_DIGEST: ${{ steps.image.outputs.digest }}
+          RECIPE_ID: ${{ needs.bootstrap.outputs.recipe }}
+        run: |
+          printf 'Image: `ghcr.io/revive360/devkit@%s`\n\nRecipe: `%s`\n' "$IMAGE_DIGEST" "$RECIPE_ID" >> "$GITHUB_STEP_SUMMARY"

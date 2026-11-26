@@ -1,0 +1,10 @@
+*
+!ci/
+!ci/**
+!scripts/
+!scripts/bootstrap.sh
+!scripts/fetch.py
+!upstreams.lock.json
+!licenses/
+!licenses/**
+**/__pycache__

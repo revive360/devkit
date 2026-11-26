@@ -14,6 +14,8 @@ Owner and initial maintainer: [Pedro](https://github.com/PedroHenrique0713).
 
 Organization: [`revive360`](https://github.com/revive360). Follow its [review levels/checklist](https://github.com/revive360/.github/blob/main/REVIEW.md), [required README notices](https://github.com/revive360/.github/blob/main/APP_README_TEMPLATE.md) and [CI capacity plan](docs/ci.md). Contribution commits require DCO (`git commit -s`). No self-review except founder Pedro, with the exception recorded. Security: private vulnerability reporting (48-hour initial response); public support: [official Discussions](https://github.com/orgs/revive360/discussions). No donations are received/split by the org.
 
+The shared CI image is `ghcr.io/revive360/devkit:recipe-<recipe-sha256>`. Apps pin its approved OCI digest. See [image stages, source materials and verification](docs/ci.md#building-and-consuming-the-public-image). Initial publication/public visibility must be verified before consuming it.
+
 ## Get the first app on screen
 
 Give the toolchain its time. The quick loop starts after the PC and console are ready. Start with [homebrew in 2026](docs/homebrew-2026.md). On Linux, install CMake 3.25+, Make, Python 3.12+, a C/C++ compiler, SDL3 3.2+ development files, Vulkan headers/loader/driver and `glslangValidator`. The cross compiler also needs the build dependencies listed by xsdk. Windows users can use Linux in WSL for building; this workflow has not been verified on macOS.

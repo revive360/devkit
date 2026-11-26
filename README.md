@@ -12,7 +12,7 @@ Owner and initial maintainer: [Pedro](https://github.com/PedroHenrique0713).
 
 **Privacy:** No telemetry or hidden collection. Login credentials/tokens must stay on the console and out of issues/logs; any future collection requires explicit opt-in. `net_log.txt` enables developer-selected UDP diagnostics; keep it private, use trusted networks and never log credentials.
 
-Organization: [`revive360`](https://github.com/revive360). Follow its [review levels/checklist](https://github.com/revive360/.github/blob/main/REVIEW.md), [required README notices](https://github.com/revive360/.github/blob/main/APP_README_TEMPLATE.md) and [CI capacity plan](docs/ci.md). Contribution commits require DCO (`git commit -s`). No self-review except founder Pedro, with the exception recorded. Security: private vulnerability reporting (48-hour initial response); public support: [official Discussions](https://github.com/orgs/revive360/discussions). `CONTACT_DECEMBER_2026_TODO`: confirmed email/domain will replace temporary GitHub routes in December. No donations are received/split by the org.
+Organization: [`revive360`](https://github.com/revive360). Follow its [review levels/checklist](https://github.com/revive360/.github/blob/main/REVIEW.md), [required README notices](https://github.com/revive360/.github/blob/main/APP_README_TEMPLATE.md) and [CI capacity plan](docs/ci.md). Contribution commits require DCO (`git commit -s`). No self-review except founder Pedro, with the exception recorded. Security: private vulnerability reporting (48-hour initial response); public support: [official Discussions](https://github.com/orgs/revive360/discussions). No donations are received/split by the org.
 
 ## Get the first app on screen
 
